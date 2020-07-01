@@ -193,9 +193,13 @@ class PushshiftAPIMinimal(object):
             success = response.status_code == 200
             if not success:
                 warnings.warn("Got non 200 code %s" % response.status_code)
+            try:
+                res = json.loads(response.text)
+            except:
+                continue
         if not success:
             raise Exception("Unable to connect to pushshift.io. Max retries exceeded.")
-        return json.loads(response.text)
+        return res
 
     def _handle_paging(self, url):
         limit = self.payload.get('limit', None)
