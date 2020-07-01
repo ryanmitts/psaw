@@ -6,6 +6,7 @@ import requests
 import time
 from datetime import datetime as dt
 import warnings
+import sys
 
 log = logging.getLogger(__name__)
 
